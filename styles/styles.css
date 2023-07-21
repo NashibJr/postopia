@@ -3,5 +3,8 @@
   background: linear-gradient(to right, #0f0,#000);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
- 
+}
+
+.signout-btn {
+  background: linear-gradient(to right, #0f0,#000);
 }
