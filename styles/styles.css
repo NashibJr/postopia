@@ -1,0 +1,7 @@
+.header-text {
+  font-size: 1.3em;
+  background: linear-gradient(to right, #0f0,#000);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+ 
+}

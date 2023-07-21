@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import "./globals.css";
+import "@/styles/styles.css";
 
 export const metadata = {
   title: "Postopia",
