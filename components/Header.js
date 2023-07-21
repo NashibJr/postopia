@@ -27,7 +27,12 @@ const Header = () => {
           height={50}
           className="rounded-full"
         />
-        <i className="mx-2 font-bold header-text sm:flex hidden">postopia</i>
+        <i
+          className="mx-2 font-bold header-text sm:flex hidden"
+          style={{ fontSize: "1.3em" }}
+        >
+          postopia
+        </i>
       </Link>
       {isLoggedin ? (
         <>
