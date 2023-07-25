@@ -11,7 +11,7 @@ const SmallDevices = ({ toggle, hanldeToggle, handleCloseToggle }) => {
         alt=""
         width={50}
         height={50}
-        className="rounded-full"
+        className="rounded-full cursor-pointer"
         onClick={hanldeToggle}
       />
       <div
@@ -27,7 +27,7 @@ const SmallDevices = ({ toggle, hanldeToggle, handleCloseToggle }) => {
             <DropdownLink label="Create post" pathName="/newpost" />
             <DropdownLink label="Signout" pathName="/signout" />
             <Button
-              class_name="bg-red-700 w-full p-1.5 text-white font-semibold hover:opacity-60"
+              class_name="bg-red-700 w-full rounded-full mt-1 p-1.5 text-white font-semibold hover:opacity-60"
               hanldeClick={handleCloseToggle}
               label="Close"
             />

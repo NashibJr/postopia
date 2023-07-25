@@ -5,7 +5,7 @@ const DropdownLink = ({ pathName, label }) => {
   return (
     <Link
       href={pathName}
-      className="text-gray-700 block px-4 py-2 text-sm hover:bg-green-600 hover:text-black"
+      className="text-gray-700 block px-4 py-2 text-sm hover:bg-green-600 hover:text-black text-end font-medium"
       role="menuitem"
       tabIndex="-1"
       id="menu-item-0"
