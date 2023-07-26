@@ -1,18 +1,21 @@
 import DropdownLink from "./Link";
-import logo from "@/public/download.png";
-import Image from "next/image";
 import Button from "./Button";
 
-const SmallDevices = ({ toggle, hanldeToggle, handleCloseToggle }) => {
+const SmallDevices = ({
+  toggle,
+  handleToggle,
+  handleCloseToggle,
+  imageURL,
+}) => {
   return (
     <>
-      <Image
-        src={logo}
+      <img
+        src={imageURL}
         alt=""
         width={50}
         height={50}
         className="rounded-full cursor-pointer"
-        onClick={hanldeToggle}
+        onClick={handleToggle}
       />
       <div
         className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"

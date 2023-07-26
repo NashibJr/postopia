@@ -12,17 +12,17 @@ import app from "@/app/api/auth/auth";
 import {
   getAuth,
   signInWithPopup,
-  signInWithRedirect,
   signOut,
   GoogleAuthProvider,
-  getRedirectResult,
   onAuthStateChanged,
   beforeAuthStateChanged,
 } from "firebase/auth";
+import client from "@/_app/client/client";
 
 const Header = () => {
   const [toggle, setToggle] = React.useState(false);
   const [isLoggedin, setIsLoggedin] = React.useState(false);
+  const [image, setImage] = React.useState("");
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
   React.useEffect(() => {
@@ -41,22 +41,13 @@ const Header = () => {
   const handleToggle = () => setToggle((prevState) => !prevState);
   const handleCloseToggle = () => setToggle(false);
   const handleSignin = async () => {
-    // small devices
     try {
-      if (window.innerWidth < 640) {
-        await signInWithRedirect(auth, provider);
-        let user = await getRedirectResult();
-        if (user) {
-          user = user.user;
-        }
-        console.log(user, ">>>>>");
-        setIsLoggedin(true);
-      }
-
-      // large devices
       const response = await signInWithPopup(auth, provider);
+      if (response) {
+        await client.post("/auth", response.user);
+        setImage(response.user.photoURL);
+      }
       setIsLoggedin(true);
-      console.log(response.user, ")))))))))))");
     } catch (error) {
       console.log(error);
     }
@@ -95,15 +86,16 @@ const Header = () => {
           <div className="relative inline-block text-left sm:hidden">
             <SmallDevices
               toggle={toggle}
-              hanldeToggle={handleToggle}
+              handleToggle={handleToggle}
               handleCloseToggle={handleCloseToggle}
+              imageURL={image}
             />
           </div>
 
           {/* larger devices */}
 
           <div className="sm:flex hidden">
-            <LargeDevices handleSignout={handleSignOut} />
+            <LargeDevices handleSignout={handleSignOut} imageURL={image} />
           </div>
         </>
       ) : (

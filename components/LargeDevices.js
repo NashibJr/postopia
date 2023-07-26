@@ -1,8 +1,6 @@
 import Button from "./Button";
-import Image from "next/image";
-import logo from "@/public/download.png";
 
-const LargeDevices = ({ handleCreatePost, handleSignout }) => {
+const LargeDevices = ({ handleCreatePost, handleSignout, imageURL }) => {
   return (
     <>
       <Button
@@ -15,8 +13,8 @@ const LargeDevices = ({ handleCreatePost, handleSignout }) => {
         label="Signout"
         hanldeClick={handleSignout}
       />
-      <Image
-        src={logo}
+      <img
+        src={imageURL}
         alt=""
         width={50}
         height={50}
