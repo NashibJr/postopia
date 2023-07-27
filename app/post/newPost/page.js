@@ -2,11 +2,15 @@
 
 import React from "react";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 const NewPost = () => {
   const [post, setPost] = React.useState({ post: "", tag: "" });
+  const router = useRouter();
+
   const handleChange = (event) =>
     setPost({ ...post, [event.target.name]: event.target.value });
+
   return (
     <div className="p-5 flex flex-col justify-center items-center">
       <h1 className="text-4xl font-bold text-center header-text">
@@ -43,6 +47,7 @@ const NewPost = () => {
           <Button
             class_name="rounded-full text-black p-1 mx-1 border-1 border-white w-20 font-semibold bg-slate-300"
             label="Cancel"
+            handleClick={() => router.push("/")}
           />
           <Button
             class_name="rounded-full text-white p-1 mx-1 border-1 border-white w-20 font-semibold signout-btn"
