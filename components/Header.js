@@ -18,6 +18,7 @@ import {
   beforeAuthStateChanged,
 } from "firebase/auth";
 import client from "@/_app/client/client";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [toggle, setToggle] = React.useState(false);
@@ -25,6 +26,8 @@ const Header = () => {
   const [image, setImage] = React.useState("");
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const router = useRouter();
+
   React.useEffect(() => {
     const observeUser = () => {
       onAuthStateChanged(auth, (user) => {
@@ -38,8 +41,10 @@ const Header = () => {
     return beforeAuthStateChanged(auth, () => console.log("observer removed"));
   }, []);
 
-  const handleToggle = () => setToggle((prevState) => !prevState);
+  const handleToggle = () => setToggle(true);
+
   const handleCloseToggle = () => setToggle(false);
+
   const handleSignin = async () => {
     try {
       const response = await signInWithPopup(auth, provider);
@@ -61,6 +66,8 @@ const Header = () => {
       console.log(error);
     }
   };
+
+  const handleCreatePost = () => router.push("/post/newPost");
 
   return (
     <nav className="mb-8 pt-3 flex flex-row justify-between w-full ">
@@ -87,22 +94,27 @@ const Header = () => {
             <SmallDevices
               toggle={toggle}
               handleToggle={handleToggle}
-              handleCloseToggle={handleCloseToggle}
               imageURL={image}
+              handleSignout={handleSignOut}
+              handleCloseToggle={handleCloseToggle}
             />
           </div>
 
           {/* larger devices */}
 
           <div className="sm:flex hidden">
-            <LargeDevices handleSignout={handleSignOut} imageURL={image} />
+            <LargeDevices
+              handleSignout={handleSignOut}
+              imageURL={image}
+              handleCreatePost={handleCreatePost}
+            />
           </div>
         </>
       ) : (
         <Button
           class_name="rounded-full text-white p-2 mx-1 border-1 border-white w-28 font-semibold signout-btn hover:opacity-70"
           label="Signin"
-          hanldeClick={handleSignin}
+          handleClick={handleSignin}
         />
       )}
     </nav>

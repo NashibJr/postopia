@@ -16,7 +16,6 @@ export const POST = async (req) => {
     }
     return new Response(JSON.stringify({ message: "" }));
   } catch (error) {
-    console.log(error);
     return new Response(JSON.stringify({ message: "Internal server error" }), {
       status: 401,
     });

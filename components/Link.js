@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const DropdownLink = ({ pathName, label }) => {
+const DropdownLink = ({ pathName, label, handleCloseToggle }) => {
   return (
     <Link
       href={pathName}
@@ -9,6 +9,7 @@ const DropdownLink = ({ pathName, label }) => {
       role="menuitem"
       tabIndex="-1"
       id="menu-item-0"
+      onClick={handleCloseToggle}
     >
       {label}
     </Link>
