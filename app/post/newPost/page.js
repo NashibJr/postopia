@@ -8,6 +8,7 @@ import client from "@/_app/client/client";
 
 const NewPost = () => {
   const [post, setPost] = React.useState({ post: "", tag: "" });
+  const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const { _id } = useSelector((state) => state.user.user);
 
@@ -24,14 +25,18 @@ const NewPost = () => {
       if (!response) {
         alert("An unexpected error has occured");
       }
+      setLoading(true);
       router.push("/");
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
 
+  const canCreatePost = post.post && post.tag;
+
   return (
-    <div className="p-5 flex flex-col justify-center items-center w-full">
+    <div className="p-5 flex flex-col justify-center items-center w-full create-post">
       <h1 className="text-4xl font-bold text-center header-text">
         Create Post
       </h1>
@@ -70,8 +75,9 @@ const NewPost = () => {
           />
           <Button
             class_name="rounded-full text-white p-1 mx-1 border-1 border-white w-20 font-semibold signout-btn"
-            label="Create"
+            label={loading ? "Creating..." : "Create"}
             handleClick={handleCreatePost}
+            disabled={!canCreatePost}
           />
         </div>
       </form>

@@ -7,3 +7,7 @@
 .signout-btn {
   background: linear-gradient(to right, #0f0,#000);
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
