@@ -14,8 +14,9 @@ export const POST = async (req) => {
       });
       return new Response(JSON.stringify(user), { status: 201 });
     }
-    return new Response(JSON.stringify({ message: "" }));
+    return new Response(JSON.stringify(userExists), { status: 201 });
   } catch (error) {
+    console.log(error);
     return new Response(JSON.stringify({ message: "Internal server error" }), {
       status: 401,
     });

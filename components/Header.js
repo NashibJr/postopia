@@ -19,6 +19,8 @@ import {
 } from "firebase/auth";
 import client from "@/_app/client/client";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { handleSigin, handleSigout } from "@/redux/user/userSlice";
 
 const Header = () => {
   const [toggle, setToggle] = React.useState(false);
@@ -27,6 +29,13 @@ const Header = () => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (!isLoggedin) {
+      handleSignOut();
+    }
+  }, [isLoggedin]);
 
   React.useEffect(() => {
     const observeUser = () => {
@@ -49,7 +58,8 @@ const Header = () => {
     try {
       const response = await signInWithPopup(auth, provider);
       if (response) {
-        await client.post("/auth", response.user);
+        const createdUser = await client.post("/auth", response.user);
+        dispatch(handleSigin(createdUser.data));
         setImage(response.user.photoURL);
       }
       setIsLoggedin(true);
@@ -60,8 +70,10 @@ const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
       setIsLoggedin(false);
+      await signOut(auth);
+      dispatch(handleSigout());
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -104,7 +116,10 @@ const Header = () => {
 
           <div className="sm:flex hidden">
             <LargeDevices
-              handleSignout={handleSignOut}
+              handleSignout={() => {
+                handleSignOut();
+                router.push("/");
+              }}
               imageURL={image}
               handleCreatePost={handleCreatePost}
             />

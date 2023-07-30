@@ -3,16 +3,35 @@
 import React from "react";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import client from "@/_app/client/client";
 
 const NewPost = () => {
   const [post, setPost] = React.useState({ post: "", tag: "" });
   const router = useRouter();
+  const { _id } = useSelector((state) => state.user.user);
 
   const handleChange = (event) =>
     setPost({ ...post, [event.target.name]: event.target.value });
 
+  const handleCreatePost = async () => {
+    try {
+      const response = await client.post("/new/post", {
+        userId: _id,
+        post: post.post,
+        tag: post.tag,
+      });
+      if (!response) {
+        alert("An unexpected error has occured");
+      }
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="p-5 flex flex-col justify-center items-center">
+    <div className="p-5 flex flex-col justify-center items-center w-full">
       <h1 className="text-4xl font-bold text-center header-text">
         Create Post
       </h1>
@@ -52,6 +71,7 @@ const NewPost = () => {
           <Button
             class_name="rounded-full text-white p-1 mx-1 border-1 border-white w-20 font-semibold signout-btn"
             label="Create"
+            handleClick={handleCreatePost}
           />
         </div>
       </form>
