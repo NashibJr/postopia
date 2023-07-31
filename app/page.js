@@ -13,7 +13,7 @@ const Home = () => {
         <br className="max-md:hidden" />
         modern world to discover, create and share creative posts
       </p>
-      <div>
+      <div className="flex p-3 md:justify-center items-center md:w-4/6 lg:w-3/6 w-full">
         <Posts />
       </div>
     </div>

@@ -14,13 +14,15 @@ const Post = ({ image, creatorName }) => {
           />
         </span>
         <div className="flex items-end flex-col">
-          <GoCopy />
+          <span>
+            <GoCopy />
+          </span>
           <p>
             By: <span className="text-xs font-bold">Nashib JR</span>
           </p>
         </div>
       </div>
-      <div className="overflow-auto h-20 post-scroll mt-2">
+      <div className="overflow-auto h-12 post-scroll mt-2">
         <p className="text-sm">
           This post is about JavaScript. This is a programming language that is
           the most popular among all the programming languages. All modern web
