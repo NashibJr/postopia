@@ -8,6 +8,6 @@
   background: linear-gradient(to right, #0f0,#000);
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,.post-scroll::-webkit-scrollbar {
   display: none;
 }

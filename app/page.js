@@ -1,3 +1,5 @@
+import Posts from "./posts/posts";
+
 const Home = () => {
   return (
     <div className="p-5 flex flex-col justify-center items-center">
@@ -11,6 +13,9 @@ const Home = () => {
         <br className="max-md:hidden" />
         modern world to discover, create and share creative posts
       </p>
+      <div>
+        <Posts />
+      </div>
     </div>
   );
 };

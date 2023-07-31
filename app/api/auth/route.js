@@ -22,3 +22,15 @@ export const POST = async (req) => {
     });
   }
 };
+
+export const GET = async () => {
+  try {
+    await connectToDB();
+    const users = await User.find({}).populate(["posts"]);
+    return new Response(JSON.stringify(users), { status: 201 });
+  } catch (error) {
+    return new Response(JSON.stringify({ message: "Internal server error" }), {
+      status: 500,
+    });
+  }
+};

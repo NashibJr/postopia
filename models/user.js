@@ -24,7 +24,7 @@ const userSchema = new Schema(
 userSchema.virtual("posts", {
   ref: "Post",
   localField: "_id",
-  foreignField: "user",
+  foreignField: "creator",
   justOne: false,
 });
 
