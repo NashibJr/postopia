@@ -24,7 +24,7 @@ const Posts = () => {
       <h1 className="font-bold text-lg m-1">Posts</h1>
       <div className="overflow-auto post-scroll" style={{ height: "44vh" }}>
         {posts?.map((post) => (
-          <Post key={post.id} post={post} />
+          <Post key={post._id} post={post} />
         ))}
       </div>
     </div>
