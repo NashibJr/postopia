@@ -1,0 +1,13 @@
+.header-text {
+  background: linear-gradient(to right, #0f0,#000);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.signout-btn {
+  background: linear-gradient(to right, #0f0,#000);
+}
+
+body::-webkit-scrollbar,.post-scroll::-webkit-scrollbar {
+  display: none;
+}
